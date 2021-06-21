@@ -259,7 +259,7 @@ resource "aws_route" "private_utility_z{{ $index }}_nat" {
 
 {{ if .vpc.peering_connections -}}
 
-{{ range $peer_index, $peer := .peering_connections }}
+{{ range $peer_index, $peer := .vpc.peering_connections }}
 resource "aws_route" "vpc_peer_route_{{ $peer.id }}" {
   route_table_id         = aws_route_table.routetable_private_utility_z{{ $index }}.id
   destination_cidr_block = "{{ $peer.cidr_block }}"
